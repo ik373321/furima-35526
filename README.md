@@ -11,9 +11,9 @@ users テーブル  ユーザー情報
 | first_name_kana	| string | null: false | 名カナ
 | birthday        | date   | null: false | 生年月日
 
-
-
 ### Association
+- has_many :products
+- has_many :records
 
 products　テーブル 商品情報
 | Column      | Type   | Options     |
@@ -22,6 +22,12 @@ products　テーブル 商品情報
 | details     | text   | null: false | 商品説明
 | category    | string | null: false | カテゴリー
 | condition   | string | null: false | 商品の状態
+
+### Association
+- has_many :customers　
+- has_many :records
+
+
 
 
 customers　テーブル　配送先情報
@@ -36,6 +42,13 @@ customers　テーブル　配送先情報
 | mobile         | string | null: false | 電話番号
 | timeout        | string | null: false | 発送までの日時
 
+### Association
+- has_many :products
+- has_many :records
+
+
+
+
 
 records　テーブル
 
@@ -43,3 +56,6 @@ records　テーブル
 | ------- | --------   |--------------------------------|
 | user    | references | null: false, foreign_key: true |誰が買うか
 | name    | references | null: false, foreign_key: true |商品名
+
+### Association
+- belongs_to :user
