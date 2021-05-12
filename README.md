@@ -20,30 +20,31 @@ products　テーブル 商品情報
 | -------------  | ---------- | ------------------------------ |
 | name           | string     | null: false                    | 商品名
 | details        | text       | null: false                    | 商品説明
-| category_id    | string     | null: false                    | カテゴリー
-| condition_id   | string     | null: false                    | 商品の状態   
-| Ship_Method_id | string     | null: false                    | 配送料負担         配送について
-| area_id        | string     | null: false                    | 配送元の地域
-| timeout_id     | string     | null: false                    | 発送までの日数
+| category_id    | integer    | null: false                    | カテゴリー
+| condition_id   | integer    | null: false                    | 商品の状態   
+| Ship_Method_id | integer    | null: false                    | 配送料負担         配送について
+| prefecture_id  | integer    | null: false                    | 配送元の地域
+| timeout_id     | integer    | null: false                    | 発送までの日数
 | price          | integer    | null: false                    | 価格
 | user           | references | null: false, foreign_key: true |
 ### Association
 - has_many :customers　
-- has_many :records
+- has_one :record
 - belongs_to :user
 
 
 
 
 customers　テーブル　配送先情報
-| Column         | Type   | Options     |
-| -------------  | ------ | ------------|
-| Postal_Code    | string | null: false | 郵便番号
-| prefecture_id  | int    | null: false | 県
-| city           | string | null: false | 市区町村
-| block          | string | null: false | 番地
-| building       | string |             | 建物名
-| mobile         | string | null: false | 電話番号
+| Column         | Type       | Options                        |
+| -------------  | ---------  | -------------------------------|
+| postal_Code    | string     | null: false                    | 郵便番号
+| prefecture_id  | integer    | null: false                    | 県
+| city           | string     | null: false                    | 市区町村
+| block          | string     | null: false                    | 番地
+| building       | string     |                                | 建物名
+| mobile         | string     | null: false                    | 電話番号
+| record         | references | null: false, foreign_key: true |
 
 
 ### Association
