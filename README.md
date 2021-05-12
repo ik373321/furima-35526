@@ -38,7 +38,7 @@ products　テーブル 商品情報
 customers　テーブル　配送先情報
 | Column         | Type       | Options                        |
 | -------------  | ---------  | -------------------------------|
-| postal_Code    | string     | null: false                    | 郵便番号
+| postal_code    | string     | null: false                    | 郵便番号
 | prefecture_id  | integer    | null: false                    | 県
 | city           | string     | null: false                    | 市区町村
 | block          | string     | null: false                    | 番地
