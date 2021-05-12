@@ -27,8 +27,7 @@ products　テーブル 商品情報
 | timeout_id     | integer    | null: false                    | 発送までの日数
 | price          | integer    | null: false                    | 価格
 | user           | references | null: false, foreign_key: true |
-### Association
-- has_many :customers　
+### Association　
 - has_one :record
 - belongs_to :user
 
@@ -48,7 +47,6 @@ customers　テーブル　配送先情報
 
 
 ### Association
-- has_many :products
 - belongs_to :records
 
 
