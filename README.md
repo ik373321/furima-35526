@@ -1,32 +1,32 @@
 users テーブル  ユーザー情報
   
-| Column             | Type   | Options     |
-| ------------------ | -----  | ------------|
-| nickname           | string | null: false | ニックネーム
-| email              | string | unique:true | メールアドレス
-| encrypted_password | string | null: false | パスワード
-| last_name          | string | null: false | 姓
-| first_name	       | string | null: false | 名
-| last_name_kana     | string | null: false | 姓カナ
-| first_name_kana	   | string | null: false | 名カナ
-| birthday           | date   | null: false | 生年月日
+| Column             | Type   | Options                  |
+| ------------------ | -----  | -------------------------|
+| nickname           | string | null: false              | ニックネーム
+| email              | string | unique:true, null: false | メールアドレス
+| encrypted_password | string | null: false              | パスワード
+| last_name          | string | null: false              | 姓
+| first_name	       | string | null: false              | 名
+| last_name_kana     | string | null: false              | 姓カナ
+| first_name_kana	   | string | null: false              | 名カナ
+| birthday           | date   | null: false              | 生年月日
 
 ### Association
 - has_many :products
 - has_many :records
 
 products　テーブル 商品情報
-| Column      | Type       | Options                        |
-| ----------  | ---------- | ------------------------------ |
-| name        | string     | null: false                    | 商品名
-| details     | text       | null: false                    | 商品説明
-| category    | string     | null: false                    | カテゴリー
-| condition   | string     | null: false                    | 商品の状態   
-| ShipMethod  | string     | null: false                    | 配送料負担         配送について
-| area        | string     | null: false                    | 配送元の地域
-| timeout     | string     | null: false                    | 発送までの日数
-| price       | string     | null: false                    | 価格
-| user        | references | null: false, foreign_key: true |
+| Column         | Type       | Options                        |
+| -------------  | ---------- | ------------------------------ |
+| name           | string     | null: false                    | 商品名
+| details        | text       | null: false                    | 商品説明
+| category_id    | string     | null: false                    | カテゴリー
+| condition_id   | string     | null: false                    | 商品の状態   
+| Ship_Method_id | string     | null: false                    | 配送料負担         配送について
+| area_id        | string     | null: false                    | 配送元の地域
+| timeout_id     | string     | null: false                    | 発送までの日数
+| price          | integer    | null: false                    | 価格
+| user           | references | null: false, foreign_key: true |
 ### Association
 - has_many :customers　
 - has_many :records
@@ -38,7 +38,7 @@ products　テーブル 商品情報
 customers　テーブル　配送先情報
 | Column         | Type   | Options     |
 | -------------  | ------ | ------------|
-| PostalCode     | string | null: false | 郵便番号
+| Postal_Code    | string | null: false | 郵便番号
 | prefecture_id  | int    | null: false | 県
 | city           | string | null: false | 市区町村
 | block          | string | null: false | 番地
@@ -63,4 +63,5 @@ records　テーブル
 
 ### Association
 - belongs_to :user
-- belongs_to :customer
+- belongs_to :product
+- has_one :customer
