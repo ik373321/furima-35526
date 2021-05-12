@@ -49,7 +49,7 @@ customers　テーブル　配送先情報
 
 ### Association
 - has_many :products
-- has_many :records
+- belongs_to :records
 
 
 
