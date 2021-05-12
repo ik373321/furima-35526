@@ -25,7 +25,7 @@
                 <mxCell id="50" value="products" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;" vertex="1" parent="1">
                     <mxGeometry x="700" y="120" width="190" height="170" as="geometry"/>
                 </mxCell>
-                <mxCell id="52" value="name&#10;details&#10; category_id  &#10;condition_id&#10;Ship_Method_id&#10;prefecture_id&#10;timeout_id&#10;price  &#10;user" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="50">
+                <mxCell id="52" value="name&#10;details&#10; category_id  &#10;condition_id&#10;ship_method_id&#10;prefecture_id&#10;timeout_id&#10;price  &#10;user" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="50">
                     <mxGeometry y="26" width="190" height="144" as="geometry"/>
                 </mxCell>
                 <mxCell id="84" value="" style="edgeStyle=orthogonalEdgeStyle;fontSize=12;html=1;endArrow=ERoneToMany;startArrow=ERzeroToOne;rounded=0;entryX=0.522;entryY=1.028;entryDx=0;entryDy=0;entryPerimeter=0;endSize=16;startSize=16;" edge="1" parent="1" target="52">
