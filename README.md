@@ -22,7 +22,7 @@ products　テーブル 商品情報
 | details        | text       | null: false                    | 商品説明
 | category_id    | integer    | null: false                    | カテゴリー
 | condition_id   | integer    | null: false                    | 商品の状態   
-| Ship_Method_id | integer    | null: false                    | 配送料負担         配送について
+| ship_method_id | integer    | null: false                    | 配送料負担         配送について
 | prefecture_id  | integer    | null: false                    | 配送元の地域
 | timeout_id     | integer    | null: false                    | 発送までの日数
 | price          | integer    | null: false                    | 価格
