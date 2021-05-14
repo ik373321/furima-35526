@@ -26,11 +26,13 @@ RSpec.describe User, type: :model do
       @user.last_name = '333333'
       @user.valid?
       expect(@user.errors.full_messages).to include("Last name is invalid")
+
     end
 
     it 'first_nameが空では登録できない' do
       @user.first_name = ''
       @user.valid?
+
       expect(@user.errors.full_messages).to include("First name is invalid")
     end
 
@@ -76,11 +78,14 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("Password can't be blank")
     end
 
+
     it 'passwordが英語のみでは登録できない' do
+
       @user.password = 'aaaaaa'
       @user.valid?
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
+
 
     it 'passwordが数字のみでは登録できない' do
       @user.password = '1111111'
@@ -114,6 +119,7 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
+
 
   end
 end
