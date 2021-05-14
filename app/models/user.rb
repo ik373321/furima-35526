@@ -6,5 +6,11 @@ class User < ApplicationRecord
 
  has_many :products
  has_many :records
- validates :nickname, :last_name, :first_name, :last_name_kana, :first_name_kana, :birthday, presence: true
+ validates :nickname, :last_name, :first_name, :birthday, presence: true
+ PASSWORD_VALIDATES = PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i
+ validates :password, format: { with: PASSWORD_VALIDATES }
+ NAME_KANA_VALIDATES=/\A[ァ-ヶー－]+\z/
+ validates :last_name_kana, format: { with: NAME_KANA_VALIDATES, presence: true}
+ validates :first_name_kana, format: { with: NAME_KANA_VALIDATES, presence: true}
+ validates :password, confirmation: true
 end
