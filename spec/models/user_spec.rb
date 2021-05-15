@@ -9,6 +9,7 @@ RSpec.describe User, type: :model do
       expect(@user).to be_valid
     end
 
+    context '新規登録がうまくいかないとき' do
 
     it 'nicknameが空では登録できない' do
       @user.nickname = ''
@@ -44,7 +45,7 @@ RSpec.describe User, type: :model do
     it 'last_name_kanaが空では登録できない' do
       @user.last_name_kana = ''
       @user.valid?
-      expect(@user.errors.full_messages).to include("Last name kana is invalid")
+      expect(@user.errors.full_messages).to include("Last name kana can't be blank")
     end
 
     it 'last_name_kanaがフリガナが全角カナでなければ登録できない' do
@@ -130,7 +131,7 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
 
-
+  end
 
   end
 end
