@@ -6,7 +6,8 @@ class User < ApplicationRecord
 
  #has_many :products
  #has_many :records
- 
+ PASSWORD_VALIDATES = PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i
+ validates :password, format: { with: PASSWORD_VALIDATES }
  with_options presence: true do
    validates :nickname, :birthday
  with_options format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ } do

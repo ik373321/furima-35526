@@ -5,9 +5,11 @@ RSpec.describe User, type: :model do
     before do
       @user = FactoryBot.build(:user)
     end
+   context '新規登録がうまくいくとき' do
     it '新規登録時に必要な値が入っていれば登録できる' do
       expect(@user).to be_valid
     end
+   end
 
     context '新規登録がうまくいかないとき' do
 
