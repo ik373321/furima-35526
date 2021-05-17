@@ -62,6 +62,30 @@ RSpec.describe Product, type: :model do
         expect(@product.errors.full_messages).to include("Price can't be blank")
       end
 
+      it ' priceが300以下では登録できない' do
+        @product.price  = 5
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Price must be greater than or equal to 300")
+      end
+      it ' priceが9999999以上では登録できない' do
+        @product.price  = 999999999999999999
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Price must be less than or equal to 9999999")
+      end
+
+      it ' priceが半角数字以外では登録できない' do
+        @product.price  = "aaaa"
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Price is not a number")
+      end
+
+      it ' detailsは４０字以上では登録できない' do
+        @product.details  = "ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ"
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Details is too long (maximum is 40 characters)")
+      end
+
+
     end
   end
 
