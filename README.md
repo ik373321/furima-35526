@@ -24,7 +24,7 @@ products　テーブル 商品情報
 | condition_id   | integer    | null: false                    | 商品の状態   
 | ship_method_id | integer    | null: false                    | 配送料負担         配送について
 | prefecture_id  | integer    | null: false                    | 配送元の地域
-| day_ship_id   | integer    | null: false                    | 発送までの日数
+| day_ship_id    | integer    | null: false                    | 発送までの日数
 | price          | integer    | null: false                    | 価格
 | user           | references | null: false, foreign_key: true |
 ### Association　
