@@ -17,6 +17,31 @@ class ProductsController < ApplicationController
     end
   end
 
+  def show
+    @product = Product.find(params[:id])
+  end
+
+  def edit
+    #binding.pry
+    @product = Product.find(params[:id])
+  end
+
+  def update
+    @product = Product.find(params[:id])
+    if @product.update(products_params)
+      #binding.pry
+   redirect_to product_path
+   else
+   render :edit
+   end
+  end
+
+  def destroy
+    @product = Product.find(params[:id])
+     @product.destroy
+     redirect_to root_path
+   end
+
   private
 
   def products_params
