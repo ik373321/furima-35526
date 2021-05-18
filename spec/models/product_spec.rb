@@ -5,6 +5,7 @@ RSpec.describe Product, type: :model do
     describe 'ユーザー新規登録' do
       before do
         @product = FactoryBot.build(:product)
+       @product.image = fixture_file_upload("/test_image.png")
       end
      context '商品出品がうまくいくとき' do
       it '商品出品に必要な値が入っていれば登録できる' do
@@ -80,11 +81,16 @@ RSpec.describe Product, type: :model do
       end
 
       it ' detailsは４０字以上では登録できない' do
-        @product.details  = "ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ"
+        @product.details  = "あああああああああああああああああああああああああああああああああああああああああ"
         @product.valid?
         expect(@product.errors.full_messages).to include("Details is too long (maximum is 40 characters)")
       end
 
+      it ' imageがないと登録できない' do
+        @product.image  = nil
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Image can't be blank")
+      end
 
     end
   end
