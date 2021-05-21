@@ -1,15 +1,18 @@
 class CustomerRecordController < ApplicationController
+  before_action :authenticate_user!, only: [:index]
   before_action :sold_out_product, only: [:index]
+  before_action :set_product,only: [:index,:create]
+  before_action :current_user_product_user,oniy:[:index]
   def index
    #binding.pry
-    @product = Product.find(params[:product_id])
+    #@product = Product.find(params[:product_id])
     
    # binding.pry
     @order = Order.new
   end
 
   def create
-    @product = Product.find(params[:product_id])
+    #@product = Product.find(params[:product_id])
     #binding.pry
     @order = Order.new(order_params)
     if @order.valid?
@@ -44,4 +47,18 @@ class CustomerRecordController < ApplicationController
       redirect_to root_path 
     end
   end
+
+
+  def current_user_product_user
+    @product = Product.find(params[:product_id]) 
+    return redirect_to root_path if current_user.id == @product.user.id || @product.record.present?
+     
+    end
+  end
+
+  def set_product
+    @product = Product.find(params[:product_id])
+ end
+
+  
 end

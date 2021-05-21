@@ -1,8 +1,9 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
-  before_action :current_user_product_user, except: [:index, :new, :create, :show]
   before_action :set_product,only: [:edit, :show, :update, :destroy]
+  before_action :current_user_product_user, except: [:index, :new, :create, :show]
 
+  
   def index
     @product = Product.order('created_at DESC')
   end
@@ -53,8 +54,7 @@ class ProductsController < ApplicationController
 
   
   def current_user_product_user
-    @product = Product.find(params[:id])
-    unless current_user.id == @product.user.id
+    if current_user.id != @product.user.id || @product.record.present?
       redirect_to action: :index
     end
   end
