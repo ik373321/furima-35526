@@ -4,16 +4,11 @@ class CustomerRecordController < ApplicationController
   before_action :set_product,only: [:index,:create]
   before_action :current_user_product_user,oniy:[:index]
   def index
-   #binding.pry
-    #@product = Product.find(params[:product_id])
-    
-   # binding.pry
     @order = Order.new
   end
 
   def create
-    #@product = Product.find(params[:product_id])
-    #binding.pry
+
     @order = Order.new(order_params)
     if @order.valid?
       pay_item
