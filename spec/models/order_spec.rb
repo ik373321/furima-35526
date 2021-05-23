@@ -6,7 +6,7 @@ RSpec.describe Order, type: :model do
       user = FactoryBot.create(:user)
 
       product = FactoryBot.create(:product)
-      # binding.pry
+    
       @order = FactoryBot.build(:order, user_id: user.id, product_id: product.id)
       sleep(0.1)
     end

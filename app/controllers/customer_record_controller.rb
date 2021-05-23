@@ -1,14 +1,23 @@
 class CustomerRecordController < ApplicationController
-  before_action :authenticate_user!, only: [:index]
+  before_action :authenticate_user!, only: [:index,:create]
   before_action :set_product, only: [:index, :create]
-  before_action :sold_out_product, only: [:index]
-  before_action :current_user_product_user, oniy: [:index]
-  before_action :set_order, only: [:create]
+  before_action :sold_out_product, only: [:index,:create]
+  before_action :current_user_product_user, oniy: [:index,:create]
+ 
   def index
     @order = Order.new
   end
 
   def create
+    @order = Order.new(order_params)
+
+  if @order.valid?
+    pay_item
+    @order.save
+    redirect_to root_path
+  else
+    render 'index'
+  end
   end
 
   private
@@ -28,12 +37,12 @@ class CustomerRecordController < ApplicationController
   end
 
   def sold_out_product
-    @product = Product.find(params[:product_id])
+
     redirect_to root_path if @product.record.present?
   end
 
   def current_user_product_user
-    @product = Product.find(params[:product_id])
+   
     return redirect_to root_path if current_user.id == @product.user.id
   end
 end
@@ -42,14 +51,4 @@ def set_product
   @product = Product.find(params[:product_id])
 end
 
-def set_order
-  @order = Order.new(order_params)
 
-  if @order.valid?
-    pay_item
-    @order.save
-    redirect_to root_path
-  else
-    render 'index'
-  end
-end
