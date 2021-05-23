@@ -1,27 +1,22 @@
 class CustomerRecordController < ApplicationController
   before_action :authenticate_user!, only: [:index]
-  before_action :sold_out_product, only: [:index]
   before_action :set_product,only: [:index,:create]
+  before_action :sold_out_product, only: [:index]
   before_action :current_user_product_user,oniy:[:index]
+  before_action :set_order, only:[:create]
   def index
+   # binding.pry
     @order = Order.new
   end
 
   def create
 
-    @order = Order.new(order_params)
-    if @order.valid?
-      pay_item
-      @order.save
-      return redirect_to root_path
-    else
-      render 'index'
-    end
   end
 
   private
 
   def order_params
+    #binding.pry
     params.require(:order).permit( :postal_code, :prefecture_id, :city, :block, :binding, :mobile, ).merge(token: params[:token], product_id:params[:product_id], user_id:current_user.id)
   end
 
@@ -37,7 +32,7 @@ class CustomerRecordController < ApplicationController
 
 
   def sold_out_product
-    @product = Product.find(params[:product_id])
+   @product = Product.find(params[:product_id])
     if @product.record.present?    
       redirect_to root_path 
     end
@@ -45,15 +40,35 @@ class CustomerRecordController < ApplicationController
 
 
   def current_user_product_user
-    @product = Product.find(params[:product_id]) 
-    return redirect_to root_path if current_user.id == @product.user.id || @product.record.present?
+    @product = Product.find(params[:product_id])
+    return redirect_to root_path if current_user.id == @product.user.id 
      
     end
   end
 
   def set_product
-    @product = Product.find(params[:product_id])
- end
+    @product = Product.find(params[:product_id]) 
+  end
+
+ def set_order
+   @order = Order.new(order_params)
+   #binding.pry
+    if @order.valid?
+      pay_item
+      @order.save
+      return redirect_to root_path
+    else
+      render 'index'
+    end
+  end
+
+
+
+
 
   
-end
+
+
+
+
+

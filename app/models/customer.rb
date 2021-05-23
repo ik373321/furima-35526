@@ -1,4 +1,3 @@
 class Customer < ApplicationRecord
- belongs_to :record
- 
+  belongs_to :record
 end
